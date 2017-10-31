@@ -11,3 +11,14 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+.filter-container .filter-flex {
+    display: flex;
+}
+.filter-container .filter-flex .right-aligned {
+    cursor: pointer;
+    display: none;
+    margin-left: auto;
+}
+.filter-container .filter-flex:hover .right-aligned {
+    display: block;
+}

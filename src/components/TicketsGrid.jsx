@@ -7,12 +7,16 @@ class TicketsGrid extends Component {
     //     super(props);
     //     //...
     // }
+    componentWillReceiveProps(nextProps){
+        let newFilter = nextProps.filterData;
+        console.log(newFilter);
+    }
     render(){
         return (
             <div className="tickets-grid">
                {
                    this.props.ticketsData.map((ticket, index) => {
-                       console.log(ticket);
+                    //    console.log(ticket);
                        return <Ticket key={index} ticketData={ticket}/>;
                    })
                }

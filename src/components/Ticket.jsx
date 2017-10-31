@@ -1,31 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import sellerImage from "./sellerImage.png"
 import './Ticket.css'
 
-class Ticket extends Component {
-    // constructor(props){
-    //     super(props);
-    //     //...
-    // }
-    state = {
-    }
-    render() {
-        return (
-            <div className="ticket-container">
-                <div className="left">
-                    <img src={sellerImage} alt=""/>
-                    <div className="buy-btn">
-                        <div>
-                            Купить<br/>
-                            за {this.props.ticketData.price} P
-                        </div>
-                    </div>
-                </div>
-                <div className="right">
+
+
+export default ({ticketData}) =>
+    <div className="ticket-container">
+        <div className="left">
+            <img src={sellerImage} alt=""/>
+            <div className="buy-btn">
+                <div>
+                    Купить<br/>
+                    за {ticketData.price} P
                 </div>
             </div>
-        );
-    }
-}
-
-export default Ticket
+        </div>
+        <div className="right">
+            <div>{ticketData.stops}</div>
+            <div>{ticketData.departure_time}</div>
+            <div>{ticketData.arrival_time}</div>
+        </div>
+    </div>
