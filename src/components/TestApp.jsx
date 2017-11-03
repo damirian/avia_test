@@ -13,31 +13,31 @@ class TestApp extends Component {
         this.state = {
             filter: [
                 {
-                    val: -1,
+                    id: -1,
                     name: "Все",
                     checked: true,
                     only: true
                 },
                 {
-                    val: 0,
+                    id: 0,
                     name: "Без пересадок",
                     checked: true,
                     only: false
                 },
                 {
-                    val: 1,
+                    id: 1,
                     name: "1 пересадка",
                     checked: true,
                     only: false
                 },
                 {
-                    val: 2,
+                    id: 2,
                     name: "2 пересадки",
                     checked: true,
                     only: false
                 },
                 {
-                    val: 3,
+                    id: 3,
                     name: "3 пересадки",
                     checked: true,
                     only: false
@@ -50,7 +50,7 @@ class TestApp extends Component {
     filterChanged = (newFilter) => {
         this.setState({filter:  newFilter});
     }
-
+    
     // componentDidUpdate(){
     //     console.log(this.state.filter);
     // }

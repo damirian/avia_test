@@ -42,7 +42,7 @@ class Filter extends Component {
             <div className="filter-container">
                 {
                     this.state.filterData.map((filter, index) => {
-                        return <div className="filter-flex" key={index}>
+                        return <div className="filter-flex" key={filter.id}>
                             <input type="checkbox" value={filter.val} checked={filter.checked} onChange={() => this.HandleOnChecked(index)}/>
                             <label>{filter.name}</label>
                             {(index !== 0)? <div className="right-aligned" onClick={() => this.HandleOnOnlyClicked(index)}>ONLY</div>:null}
