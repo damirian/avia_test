@@ -22,16 +22,20 @@ class TicketsGrid extends Component {
         });
     }
     getSortedTickets() {
+        let filterData = this.props.filterData;
+        console.log(filterData.length);
         let newTiketsData = [];
-        this.props.filterData.forEach(function(element, index) {
+        let element;
+        for(let index = 0; index < filterData.length; index++) {
+            element = filterData[index];
             if(element.checked === true) {
                 if(element.id === -1) {
                     newTiketsData = this.props.ticketsData;
-                    return;
+                    break;
                 }
                 newTiketsData = newTiketsData.concat(this.filterTicketsByStopsCount(this.props.ticketsData, element.id));
             }
-        }, this);
+        }
         
         return this.sortTicketsPyPrice(newTiketsData);
     }

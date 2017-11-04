@@ -2,8 +2,6 @@ import React from 'react';
 import sellerImage from "./sellerImage.png"
 import './Ticket.css'
 
-
-
 export default ({ticketData}) =>
     <div className="ticket-container">
         <div className="left">
