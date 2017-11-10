@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import TicketsGrid from './TicketsGrid.jsx'
-import Filter from './Filter.jsx'
-
-import ticketsData from './tickets.json'
+import TicketsGrid from './TicketsGrid.js'
+import Filter from './Filter.js'
 
 import "./TestApp.css"
 
@@ -42,8 +40,7 @@ class TestApp extends Component {
                     checked: true,
                     only: false
                 }
-            ],
-            tickets: ticketsData.tickets
+            ]
         }
     }
 
@@ -58,7 +55,7 @@ class TestApp extends Component {
         return (
             <div className="test-app">
                 <Filter filterData={this.state.filter} onChange={this.filterChanged}/>
-                <TicketsGrid ticketsData={this.state.tickets} filterData={this.state.filter}/>
+                <TicketsGrid filterData={this.state.filter}/>
             </div>
         );
     }
