@@ -68,7 +68,7 @@ class TicketsGrid extends Component {
     }
     
     render(){
-        return <TicketsGridStyled isLoaded={this.state.isLoaded} ticketsFilter = {this.getSortedTickets()}/>
+        return <TicketsGridStyled isLoaded = {this.state.isLoaded} ticketsFilter = {this.getSortedTickets()}/>
     }
 }
 

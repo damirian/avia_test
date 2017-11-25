@@ -54,8 +54,8 @@ class TestApp extends Component {
     render() {
         return (
             <div className="test-app">
-                <Filter filterData={this.state.filter} onChange={this.filterChanged}/>
-                <TicketsGrid filterData={this.state.filter}/>
+                <Filter filterData = {this.state.filter} onChange = {this.filterChanged}/>
+                <TicketsGrid filterData = {this.state.filter}/>
             </div>
         );
     }

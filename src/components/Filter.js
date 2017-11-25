@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// import $ from 'jquery'
-import './Filter.css'
+import FilterStyled from './FilterStatic';
 
 class Filter extends Component {
     constructor(props){
@@ -38,19 +37,11 @@ class Filter extends Component {
         onChange(newFilterData);
     }
     render(){
-        return (
-            <div className="filter-container">
-                {
-                    this.state.filterData.map((filter, index) => {
-                        return <div className="filter-flex" key={filter.id}>
-                            <input type="checkbox" value={filter.val} checked={filter.checked} onChange={() => this.HandleOnChecked(index)}/>
-                            <label>{filter.name}</label>
-                            {(index !== 0)? <div className="right-aligned" onClick={() => this.HandleOnOnlyClicked(index)}>ONLY</div>:null}
-                        </div>;
-                   })
-               }
-            </div>
-        );
+        return <FilterStyled 
+            filterData = {this.state.filterData} 
+            HandleOnChecked = {this.HandleOnChecked} 
+            HandleOnOnlyClicked = {this.HandleOnOnlyClicked}
+        />
     }
 }
 
