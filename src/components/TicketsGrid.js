@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Ticket from './Ticket'
-import './TicketsGrid.css'
 import getJSON from '../api/ticketsLoader'
+import TicketsGridStyled from "./TicketsGridStatic"
 
 class TicketsGrid extends Component {
     state = {
@@ -69,19 +68,7 @@ class TicketsGrid extends Component {
     }
     
     render(){
-        if(this.state.isLoaded){
-            if(this.state.isLoadErr){
-                return (<h1>Кажется что-то пошло не так</h1>);
-            }
-            const filteredTickets = this.getSortedTickets();
-            return (
-                <div className="tickets-grid">
-                    { filteredTickets.map((ticket, index) => <Ticket key={index} ticketData={ticket}/>) }
-                </div>
-            );
-        } else {
-            return (<h1>Подождите окончания загрузки...</h1>);
-        }
+        return <TicketsGridStyled isLoaded={this.state.isLoaded} ticketsFilter = {this.getSortedTickets()}/>
     }
 }
 
