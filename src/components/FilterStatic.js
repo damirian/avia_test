@@ -6,15 +6,17 @@ const FilterRenderer = (props) => {
     const {HandleOnOnlyClicked} = props;
     return (
         <div className={props.className}>
-            <div>КОЛИЧЕСТВО ПЕРЕСАДОК</div>
+            <TransfersCaption>КОЛИЧЕСТВО ПЕРЕСАДОК</TransfersCaption>
             <div>
                 {
                     props.filterData.map((filter, index) => {
-                        return <div className="filter-flex" key={filter.id}>
-                            <input type="checkbox" value={filter.val} checked={filter.checked} onChange={() => HandleOnChecked(index)}/>
-                            <label>{filter.name}</label>
-                            {(index !== 0)? <div className="right-aligned" onClick={() => HandleOnOnlyClicked(index)}>ONLY</div>:null}
-                        </div>;
+                        return <FilterRelativeBox key={filter.id}>
+                            <div>
+                                <input type="checkbox" value={filter.val} checked={filter.checked} onChange={() => HandleOnChecked(index)}/>
+                                <label>{filter.name}</label>
+                                {(index !== 0)? <div className="right-aligned" onClick={() => HandleOnOnlyClicked(index)}>ONLY</div>:null}
+                            </div>
+                        </FilterRelativeBox>;
                 })
             }
             </div>
@@ -22,15 +24,15 @@ const FilterRenderer = (props) => {
     );
 }
 
-let filterElementPadding = '15px';
+let filterElementPadding = 15;
+let filterItemWidth = 232;
 const FilterStyled = styled(FilterRenderer)`
     border-radius: 5px;
-    width: 232px;
-    height: 231px;
+    width: ${filterItemWidth}px;
     background: #ffffff;
     box-shadow: 0px 1px 4px rgba(91,137,163,0.25);
     margin-right: 19px;
-    padding: ${filterElementPadding} 0 ${filterElementPadding} 0;
+    padding: ${filterElementPadding}px 0 ${filterElementPadding}px 0;
     font-size: 12.0px;
     font-style: normal;
     font-stretch: normal;
@@ -41,38 +43,49 @@ const FilterStyled = styled(FilterRenderer)`
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 
+    display: table;
+
     > div {
-        &:first-child {
-            padding: 0 ${filterElementPadding};
-        }
         display: block;
     }
+`;
+
+const TransfersCaption = styled.div`
+    padding: 0 ${filterElementPadding}px;
+`;
     
-    .filter-flex {
-        padding: 0 ${filterElementPadding};
+const FilterRelativeBox = styled.div`
+    padding: 0 ${filterElementPadding}px;
 
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 
-        width: 232px;
-        height: 36px;
-        
+    width: ${filterItemWidth};
+    height: 36px;
+    
+    position: relative;
+    
+    > div {
         display: flex;
+        width: ${filterItemWidth - filterElementPadding * 2}px;
+        height: 18px;
+        position: absolute;
+        margin: auto 0;
+        top: 0;
+        bottom: 0;
+    }
+    &:hover {
+        background: #f1fcff;
 
         .right-aligned {
-            cursor: pointer;
-            display: none;
-            margin-left: auto;
+            display: inline-block;
         }
-        
-        &:hover {
-            background: #f1fcff;
-
-            .right-aligned {
-                display: block;
-            }
-        }
+    }
+    .right-aligned {
+        cursor: pointer;
+        display: none;
+        margin-left: auto;
     }
 `;
 
