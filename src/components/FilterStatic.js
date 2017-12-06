@@ -1,32 +1,37 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const FilterRenderer = (props) => {
     const {HandleOnChecked} = props;
     const {HandleOnOnlyClicked} = props;
+    const {HandleOnHover} = props;
+
     return (
-        <div className={props.className}>
+        <FilterStyled>
             <TransfersCaption>КОЛИЧЕСТВО ПЕРЕСАДОК</TransfersCaption>
             <div>
                 {
                     props.filterData.map((filter, index) => {
-                        return <FilterRelativeBox key={filter.id}>
-                            <div>
-                                <input type="checkbox" value={filter.val} checked={filter.checked} onChange={() => HandleOnChecked(index)}/>
-                                <label>{filter.name}</label>
-                                {(index !== 0)? <div className="right-aligned" onClick={() => HandleOnOnlyClicked(index)}>ONLY</div>:null}
-                            </div>
+                        return <FilterRelativeBox
+                            key={filter.id}
+                            onClick={() => HandleOnChecked(index)}
+                            onMouseEnter={() => HandleOnHover(index, true)}
+                            onMouseLeave={() => HandleOnHover(index, false)}
+                        >
+                            <input type="checkbox" value={filter.val} checked={filter.checked} onChange={(event) => event.stopPropagation()}/>
+                            <label>{filter.name}</label>
+                            {(index !== 0)? <OnlyDiv className="only" hovered={filter.hover} onClick={(event) => HandleOnOnlyClicked(event, index)}>ONLY</OnlyDiv>:null}
                         </FilterRelativeBox>;
-                })
-            }
+                    })
+                }
             </div>
-        </div>
+        </FilterStyled>
     );
 }
 
 let filterElementPadding = 15;
 let filterItemWidth = 232;
-const FilterStyled = styled(FilterRenderer)`
+const FilterStyled = styled.div`
     border-radius: 5px;
     width: ${filterItemWidth}px;
     background: #ffffff;
@@ -39,15 +44,7 @@ const FilterStyled = styled(FilterRenderer)`
     font-weight: 400;
     text-align: left;
     
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
-
-    display: table;
-
-    > div {
-        display: block;
-    }
 `;
 
 const TransfersCaption = styled.div`
@@ -56,37 +53,26 @@ const TransfersCaption = styled.div`
     
 const FilterRelativeBox = styled.div`
     padding: 0 ${filterElementPadding}px;
-
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
 
-    width: ${filterItemWidth};
+    width: ${filterItemWidth}px;
     height: 36px;
     
-    position: relative;
+    display: flex;
+    align-items: center;
     
-    > div {
-        display: flex;
-        width: ${filterItemWidth - filterElementPadding * 2}px;
-        height: 18px;
-        position: absolute;
-        margin: auto 0;
-        top: 0;
-        bottom: 0;
-    }
     &:hover {
         background: #f1fcff;
-
-        .right-aligned {
-            display: inline-block;
-        }
-    }
-    .right-aligned {
-        cursor: pointer;
-        display: none;
-        margin-left: auto;
     }
 `;
 
-export default FilterStyled
+const OnlyDiv = styled.div`
+    cursor: pointer;
+    margin-left: auto;
+    display: none;
+    ${props => props.hovered && css`
+        display: inline-block;
+    `};
+`
+
+export default FilterRenderer
