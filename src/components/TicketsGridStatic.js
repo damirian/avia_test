@@ -9,17 +9,17 @@ const TicketsGridStatic = (props) => {
         }
         const ticketsFilter = props.ticketsFilter;
         return (
-            <div className={props.className}>
+            <TicketsGridStyled>
                 { ticketsFilter.map((ticket, index) => <Ticket key={index} ticketData={ticket}/>) }
-            </div>
+            </TicketsGridStyled>
         );
     } else {
         return (<h1>Подождите окончания загрузки...</h1>);
     }
 }
 
-const TicketsGridStyled = styled(TicketsGridStatic)`
+const TicketsGridStyled = styled.div`
     // background-color: blue;
 `;
 
-export default TicketsGridStyled
+export default TicketsGridStatic

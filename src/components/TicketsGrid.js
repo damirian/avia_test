@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import getJSON from '../api/ticketsLoader'
-import TicketsGridStyled from "./TicketsGridStatic"
+import TicketsGridStatic from "./TicketsGridStatic"
 
 class TicketsGrid extends Component {
     state = {
@@ -68,7 +68,7 @@ class TicketsGrid extends Component {
     }
     
     render(){
-        return <TicketsGridStyled isLoaded = {this.state.isLoaded} ticketsFilter = {this.getSortedTickets()}/>
+        return <TicketsGridStatic isLoaded = {this.state.isLoaded} ticketsFilter = {this.getSortedTickets()}/>
     }
 }
 
