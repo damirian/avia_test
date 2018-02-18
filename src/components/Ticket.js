@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import sellerImage from "./sellerImage.png"
+import CarrierImage from "./CarrierImager"
 
 const Ticket = (props) => {
     return (
         <StyledTicket>
             <LeftBlock>
-                <SellerImage src={sellerImage} alt=""/>
+                <CarrierImage carrier = {props.ticketData.carrier} />
                 <BuyBtn>
                     <div>
                         Купить<br/>
@@ -30,14 +30,6 @@ const LeftBlock = styled.div`
     border-right: solid 1px #eceff1;
     padding: 25px 20px 25px 20px;
     box-sizing: border-box;
-`;
-
-const SellerImage = styled.img`
-    width: 120px;
-    height: 35px;
-    margin: 0 auto;
-    margin-bottom: 20px;
-    display: block;
 `;
 
 const RightBlock = styled.div`

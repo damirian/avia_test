@@ -44,8 +44,9 @@ class TicketsGrid extends Component {
         });
     }
 
-    componentDidMount(){
-        this.loadTicketsData();
+    async componentDidMount(){
+        await this.loadTicketsData();
+
     }
 
     getSortedTickets() {
