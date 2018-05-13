@@ -57,7 +57,7 @@ class TicketsGrid extends Component {
       element = filterData[index]
       if (element.checked === true) {
         if (element.id === -1) {
-          newTiketsData = this.state.tickets
+          newTiketsData = this.state.tickets.slice()
           break
         }
         newTiketsData = newTiketsData.concat(this.filterTicketsByStopsCount(this.state.tickets, element.id))
